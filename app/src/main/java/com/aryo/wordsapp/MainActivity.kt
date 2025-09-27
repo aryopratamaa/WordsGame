@@ -2,6 +2,8 @@ package com.aryo.wordsapp
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -16,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtFeedback: TextView
     private lateinit var txtSoalIndicator: TextView
     private lateinit var txtSkor: TextView
-    private lateinit var btnNext: Button
     private lateinit var btnRestart: Button
     private lateinit var cardImage: CardView
 
@@ -43,6 +44,8 @@ class MainActivity : AppCompatActivity() {
     private var skor = 0
     private var answered = false
 
+    private val handler = Handler(Looper.getMainLooper())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         txtFeedback = findViewById(R.id.txtFeedback)
         txtSoalIndicator = findViewById(R.id.txtSoalIndicator)
         txtSkor = findViewById(R.id.txtSkor)
-        btnNext = findViewById(R.id.btnNext)
         btnRestart = findViewById(R.id.btnRestart)
         cardImage = findViewById(R.id.cardImage)
 
@@ -67,11 +69,6 @@ class MainActivity : AppCompatActivity() {
         option2.setOnClickListener { cekJawaban(option2.text.toString()) }
         option3.setOnClickListener { cekJawaban(option3.text.toString()) }
         option4.setOnClickListener { cekJawaban(option4.text.toString()) }
-
-        btnNext.setOnClickListener {
-            currentSoalIndex++
-            tampilkanSoal()
-        }
 
         btnRestart.setOnClickListener {
             currentSoalIndex = 0
@@ -93,7 +90,6 @@ class MainActivity : AppCompatActivity() {
             option4.text = soal.opsi[3]
 
             txtFeedback.visibility = View.GONE
-            btnNext.visibility = View.GONE
             answered = false
 
             option1.isEnabled = true
@@ -120,7 +116,6 @@ class MainActivity : AppCompatActivity() {
             option2.visibility = View.GONE
             option3.visibility = View.GONE
             option4.visibility = View.GONE
-            btnNext.visibility = View.GONE
 
             btnRestart.visibility = View.VISIBLE
         }
@@ -144,11 +139,16 @@ class MainActivity : AppCompatActivity() {
 
         txtSkor.text = "Skor: $skor"
 
+        // disable tombol agar tidak bisa dipencet lagi
         option1.isEnabled = false
         option2.isEnabled = false
         option3.isEnabled = false
         option4.isEnabled = false
 
-        btnNext.visibility = View.VISIBLE
+        // otomatis lanjut ke soal berikutnya setelah 1,5 detik
+        handler.postDelayed({
+            currentSoalIndex++
+            tampilkanSoal()
+        }, 1500)
     }
 }
