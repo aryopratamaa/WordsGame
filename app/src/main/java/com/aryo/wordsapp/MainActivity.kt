@@ -11,11 +11,12 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import android.widget.Toast
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var img: ImageView
-    private lateinit var txtFeedback: TextView
     private lateinit var txtSoalIndicator: TextView
     private lateinit var txtSkor: TextView
     private lateinit var btnRestart: Button
@@ -66,7 +67,6 @@ class MainActivity : AppCompatActivity() {
 
 
         img = findViewById(R.id.img)
-        txtFeedback = findViewById(R.id.txtFeedback)
         txtSoalIndicator = findViewById(R.id.txtSoalIndicator)
         txtSkor = findViewById(R.id.txtSkor)
         btnRestart = findViewById(R.id.btnRestart)
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             option3.text = soal.opsi[2]
             option4.text = soal.opsi[3]
 
-            txtFeedback.visibility = View.GONE
+
             answered = false
 
             option1.isEnabled = true
@@ -128,7 +128,6 @@ class MainActivity : AppCompatActivity() {
             option2.visibility = View.GONE
             option3.visibility = View.GONE
             option4.visibility = View.GONE
-            txtFeedback.visibility = View.GONE
 
             txtSoalIndicator.visibility = View.GONE
             txtSkor.visibility = View.GONE
@@ -160,15 +159,12 @@ class MainActivity : AppCompatActivity() {
         answered = true
 
         val soal = soalList[posisiSoal]
-        txtFeedback.visibility = View.VISIBLE
 
         if (jawabanUser.equals(soal.jawaban, ignoreCase = true)) {
-            txtFeedback.text = "Jawaban Benar!"
-            txtFeedback.setTextColor(Color.BLUE)
+            Toast.makeText(this, "Jawaban Benar!", Toast.LENGTH_SHORT).show()
             skor++
         } else {
-            txtFeedback.text = "Jawaban Salah!\nYang benar: ${soal.jawaban}"
-            txtFeedback.setTextColor(Color.RED)
+            Toast.makeText(this, "Jawaban Salah!\nYang benar: ${soal.jawaban}", Toast.LENGTH_SHORT).show()
         }
 
         txtSkor.text = "Skor: $skor"
@@ -183,4 +179,5 @@ class MainActivity : AppCompatActivity() {
             tampilkanSoal()
         }, 1500)
     }
+
 }
