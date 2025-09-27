@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
 
         if (jawabanUser.equals(soal.jawaban, ignoreCase = true)) {
             txtFeedback.text = "Jawaban Benar!"
-            txtFeedback.setTextColor(Color.GREEN)
+            txtFeedback.setTextColor(Color.BLUE)
             skor++
         } else {
             txtFeedback.text = "Jawaban Salah!\nYang benar: ${soal.jawaban}"
