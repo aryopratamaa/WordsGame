@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var option2: Button
     private lateinit var option3: Button
     private lateinit var option4: Button
+    private lateinit var btnExit: Button
+
 
     data class Soal(
         val gambar: Int,
@@ -56,6 +58,13 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        btnExit = findViewById(R.id.btnExit)
+
+        btnExit.setOnClickListener {
+            finishAffinity()
+        }
+
+
         img = findViewById(R.id.img)
         txtFeedback = findViewById(R.id.txtFeedback)
         txtSoalIndicator = findViewById(R.id.txtSoalIndicator)
@@ -84,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun tampilkanSoal() {
         if (currentSoalIndex < soalList.size) {
+
             val soal = soalList[currentSoalIndex]
             img.setImageResource(soal.gambar)
             txtSoalIndicator.text = "Soal ${currentSoalIndex + 1} dari ${soalList.size}"
@@ -102,29 +112,48 @@ class MainActivity : AppCompatActivity() {
             option3.isEnabled = true
             option4.isEnabled = true
 
-            btnRestart.visibility = View.GONE
-            cardImage.visibility = View.VISIBLE
+            txtSoalIndicator.visibility = View.VISIBLE
+            txtSkor.visibility = View.VISIBLE
 
+            findViewById<View>(R.id.finishLayout).visibility = View.GONE
+            cardImage.visibility = View.VISIBLE
             option1.visibility = View.VISIBLE
             option2.visibility = View.VISIBLE
             option3.visibility = View.VISIBLE
             option4.visibility = View.VISIBLE
-        } else {
-            txtFeedback.visibility = View.VISIBLE
-            txtFeedback.text = "SELESAI!\nSkor akhir kamu: $skor"
-            txtFeedback.setTextColor(Color.BLUE)
-            txtFeedback.textSize = 20f
-            txtFeedback.textAlignment = View.TEXT_ALIGNMENT_CENTER
 
+        } else {
             cardImage.visibility = View.GONE
             option1.visibility = View.GONE
             option2.visibility = View.GONE
             option3.visibility = View.GONE
             option4.visibility = View.GONE
+            txtFeedback.visibility = View.GONE
+
+            txtSoalIndicator.visibility = View.GONE
+            txtSkor.visibility = View.GONE
+
+            val finishLayout = findViewById<View>(R.id.finishLayout)
+            finishLayout.visibility = View.VISIBLE
+
+            val txtFinishScore = findViewById<TextView>(R.id.txtFinishScore)
+            val txtFinishMessage = findViewById<TextView>(R.id.txtFinishMessage)
+
+            txtFinishScore.text = "Skor Akhir: $skor / ${soalList.size}"
+
+            if (skor == soalList.size) {
+                txtFinishMessage.text = "Luar biasa! Semua jawaban benar."
+            } else if (skor >= soalList.size / 2) {
+                txtFinishMessage.text = "Bagus! Kamu sudah cukup menguasai."
+            } else {
+                txtFinishMessage.text = "Jangan menyerah, coba lagi ya."
+            }
 
             btnRestart.visibility = View.VISIBLE
         }
     }
+
+
 
     private fun cekJawaban(jawabanUser: String) {
         if (answered) return
