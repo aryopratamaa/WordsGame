@@ -9,7 +9,6 @@
     android:background="#F5F6FA"
     tools:context=".MainActivity">
 
-    <!-- HEADER -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="0dp"
@@ -42,7 +41,6 @@
             android:layout_marginTop="6dp"/>
     </LinearLayout>
 
-    <!-- Soal Indicator -->
     <TextView
         android:id="@+id/txtSoalIndicator"
         android:layout_width="wrap_content"
@@ -56,7 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Skor -->
     <TextView
         android:id="@+id/txtSkor"
         android:layout_width="wrap_content"
@@ -71,7 +68,6 @@
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Card untuk Gambar -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImage"
         android:layout_width="260dp"
@@ -91,7 +87,6 @@
             android:contentDescription="gambar buah"/>
     </androidx.cardview.widget.CardView>
 
-    <!-- Opsi Jawaban -->
     <LinearLayout
         android:id="@+id/optionLayout"
         android:layout_width="0dp"
@@ -144,7 +139,6 @@
             android:textColor="@android:color/white"/>
     </LinearLayout>
 
-    <!-- Feedback -->
     <TextView
         android:id="@+id/txtFeedback"
         android:layout_width="wrap_content"
@@ -159,7 +153,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <!-- Button Lanjut -->
     <Button
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
@@ -176,7 +169,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Button Main Lagi -->
     <Button
         android:id="@+id/btnRestart"
         android:layout_width="wrap_content"
