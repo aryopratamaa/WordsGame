@@ -37,7 +37,12 @@ class MainActivity : AppCompatActivity() {
         Soal(R.drawable.pisang, "Pisang", listOf("Apel", "Semangka", "Pisang", "Anggur")),
         Soal(R.drawable.jeruk, "Jeruk", listOf("Mangga", "Jeruk", "Melon", "Nanas")),
         Soal(R.drawable.anggur, "Anggur", listOf("Pisang", "Anggur", "Apel", "Pepaya")),
-        Soal(R.drawable.mangga, "Mangga", listOf("Mangga", "Nanas", "Semangka", "Durian"))
+        Soal(R.drawable.mangga, "Mangga", listOf("Mangga", "Nanas", "Semangka", "Durian")),
+        Soal(R.drawable.semangka, "Semangka", listOf("Mangga", "Semangka", "Melon", "Pepaya")),
+        Soal(R.drawable.melon, "Melon", listOf("Mangga", "Semangka", "Melon", "Durian")),
+        Soal(R.drawable.pepaya, "Pepaya", listOf("Anggur", "Jeruk", "Pepaya", "Nanas")),
+        Soal(R.drawable.durian, "Durian", listOf("Mangga", "Semangka", "Durian", "Apel")),
+        Soal(R.drawable.nanas, "Nanas", listOf("Anggur", "Jeruk", "Nanas", "Semangka"))
     )
 
     private var currentSoalIndex = 0
@@ -139,13 +144,11 @@ class MainActivity : AppCompatActivity() {
 
         txtSkor.text = "Skor: $skor"
 
-        // disable tombol agar tidak bisa dipencet lagi
         option1.isEnabled = false
         option2.isEnabled = false
         option3.isEnabled = false
         option4.isEnabled = false
 
-        // otomatis lanjut ke soal berikutnya setelah 1,5 detik
         handler.postDelayed({
             currentSoalIndex++
             tampilkanSoal()
