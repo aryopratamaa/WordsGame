@@ -141,20 +141,20 @@
 
 
 
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="LANJUT"
-        android:backgroundTint="#009688"
-        android:textColor="@android:color/white"
-        android:visibility="gone"
-        android:minWidth="120dp"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+<!--    <Button-->
+<!--        android:id="@+id/btnNext"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="LANJUT"-->
+<!--        android:backgroundTint="#009688"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        android:visibility="gone"-->
+<!--        android:minWidth="120dp"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:paddingVertical="8dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
 
     <LinearLayout
         android:id="@+id/finishLayout"
