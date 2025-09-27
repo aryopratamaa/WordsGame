@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         Soal(R.drawable.nanas, "Nanas", listOf("Anggur", "Jeruk", "Nanas", "Semangka"))
     )
 
-    private var currentSoalIndex = 0
+    private var posisiSoal = 0
     private var skor = 0
     private var answered = false
 
@@ -85,18 +85,18 @@ class MainActivity : AppCompatActivity() {
         option4.setOnClickListener { cekJawaban(option4.text.toString()) }
 
         btnRestart.setOnClickListener {
-            currentSoalIndex = 0
+            posisiSoal = 0
             skor = 0
             tampilkanSoal()
         }
     }
 
     private fun tampilkanSoal() {
-        if (currentSoalIndex < soalList.size) {
+        if (posisiSoal < soalList.size) {
 
-            val soal = soalList[currentSoalIndex]
+            val soal = soalList[posisiSoal]
             img.setImageResource(soal.gambar)
-            txtSoalIndicator.text = "Soal ${currentSoalIndex + 1} dari ${soalList.size}"
+            txtSoalIndicator.text = "Soal ${posisiSoal + 1} dari ${soalList.size}"
             txtSkor.text = "Skor: $skor"
 
             option1.text = soal.opsi[0]
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         if (answered) return
         answered = true
 
-        val soal = soalList[currentSoalIndex]
+        val soal = soalList[posisiSoal]
         txtFeedback.visibility = View.VISIBLE
 
         if (jawabanUser.equals(soal.jawaban, ignoreCase = true)) {
@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity() {
         option4.isEnabled = false
 
         handler.postDelayed({
-            currentSoalIndex++
+            posisiSoal++
             tampilkanSoal()
         }, 1500)
     }
